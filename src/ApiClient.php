@@ -13,8 +13,8 @@ namespace Maviance\S3PApiClient;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Uri;
 use Psr\Http\Message\RequestInterface;
-use Ramsey\Uuid\Uuid;
 use Psr\Http\Message\ResponseInterface;
+use Ramsey\Uuid\Uuid;
 
 class ApiClient extends Client {
     /**
@@ -50,7 +50,7 @@ class ApiClient extends Client {
     function buildAuthorizationHeader(RequestInterface $request) {
         $data = [];
         if ($request->getMethod() == "POST") {
-            $data = \GuzzleHttp\json_decode($request->getBody()->getContents(), true);
+            $data = json_decode($request->getBody()->getContents(), true);
         }
         $auth_titleKey = "s3pAuth";
         $auth_tokenKey = "s3pAuth_token";
