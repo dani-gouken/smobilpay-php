@@ -14,6 +14,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Uri;
 use Psr\Http\Message\RequestInterface;
 use Ramsey\Uuid\Uuid;
+use Psr\Http\Message\ResponseInterface;
 
 class ApiClient extends Client {
     /**
@@ -32,7 +33,7 @@ class ApiClient extends Client {
         parent::__construct($config);
     }
 
-    public function send(RequestInterface $request, array $options = []) {
+    public function send(RequestInterface $request, array $options = []): ResponseInterface {
         $options['headers'] = ["Authorization" => $this->buildAuthorizationHeader($request)];
         return parent::send($request, $options);
     }
